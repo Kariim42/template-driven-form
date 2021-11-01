@@ -1,0 +1,36 @@
+<form (ngSubmit)="myForm.valid && onSubmit()" #myForm="ngForm">©
+    <div>
+        <label for="title-order">mail</label>
+        <input name="title-order" type="email" #mail="ngModel" [(ngModel)]="model.mail" required email>
+    </div>
+    <div *ngIf="mail.errors && myForm.submitted">
+        <span *ngIf="mail.errors?.required">l'email est requis</span>
+        <span *ngIf="mail.errors?.email">l'email n'est pas valide</span>
+    </div>
+    <div>
+        <label for="quantity-order">firstname</label>
+        <input name="quantity-order" type="text" required maxlength="15" minlength="5" [(ngModel)]="model.firstName"
+            #firstName="ngModel">
+    </div>
+    <div *ngIf="firstName.errors && myForm.submitted">
+        <span *ngIf=" firstName.errors?.required">le prénom est requis </span>
+        <span *ngIf="firstName.errors?.minlength">minimum 5 caractères</span>
+        <span *ngIf="firstName.errors?.maxlength">maximum 15 caractères</span>
+    </div>
+    <div>
+        <label for="date-order">lastname</label>
+        <input name="date-order" type="text" required [(ngModel)]="model.lastName" #lastName="ngModel" maxlength="15"
+            minlength="5">
+    </div>
+    <div *ngIf="lastName.errors && myForm.submitted">
+        <span *ngIf="lastName.errors?.required">le nom est requis </span>
+        <span *ngIf="lastName.errors?.minlength">minimum 5 caractères</span>
+        <span *ngIf="lastName.errors?.maxlength">maximum 15 caractères</span>
+    </div>
+    <div>
+        <label for="contact-order">password</label>
+        <input name="contact-order" type="password" required [(ngModel)]="model.password">
+    </div>
+    <button type="reset">Restaurer</button>
+    <button type="submit">Sauvegarder</button>
+</form>
